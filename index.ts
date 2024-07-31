@@ -87,7 +87,11 @@ async function update_mod(mod: Mod): Promise<Mod | undefined> {
 	})
 	for await (const { data: releases } of releases_iterator) {
 		for (const release of releases) {
-			if (stringToRegex(mod.packwiz_gh_release.release_name_regex).test(release.name || "")) {
+			if (
+				stringToRegex(mod.packwiz_gh_release.release_name_regex).test(
+					release.name || release.tag_name || "",
+				)
+			) {
 				const assets = (
 					await octokit.rest.repos.listReleaseAssets({
 						owner: mod.packwiz_gh_release.owner,
