@@ -66,6 +66,7 @@ const program = new Command()
 
 const octokit = new Octokit({
 	userAgent: "packwiz-gh-release tool",
+	auth: Bun.env.GITHUB_TOKEN,
 })
 
 const versions = toml_parse(await Bun.file("pack.toml").text()).versions as {
