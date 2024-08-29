@@ -41,7 +41,7 @@ function hashToHex(hash: ArrayBuffer): string {
 
 const index_schema = z.object({
 	"hash-format": z.string(),
-	files: z.array(z.object({ file: z.string(), hash: z.string(), metafile: z.boolean() })),
+	files: z.array(z.object({ file: z.string(), hash: z.string(), metafile: z.boolean().default(false) })),
 })
 
 const ModSchema = z.object({
